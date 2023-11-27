@@ -107,10 +107,20 @@ export class HousingService {
       laundry: true,
     },
   ];
-  getAllHousingLocations(): HousingLocation[] {
-    return this.housingLocationList;
+  url = 'http://localhost:3000/locations';
+  async getAllHousingLocations(): Promise<HousingLocation[]> {
+    // return this.housingLocationList;
+    const data = await fetch(this.url);
+    return (await data.json()) ?? [];
   }
-  getHousingLocationById(id: number): HousingLocation | undefined {
-    return this.housingLocationList.find((housingLocation) => housingLocation.id === id);
+  async getHousingLocationById(id: number): Promise<HousingLocation | undefined> {
+    // return this.housingLocationList.find((housingLocation) => housingLocation.id === id);
+    const data = await fetch(`${this.url}/${id}`);
+    return (await data.json()) ?? {};
+  }
+  submitApplication(firstName: string, lastName: string, email: string) {
+    console.log(
+      `Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`,
+    );
   }
 }
