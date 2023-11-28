@@ -107,6 +107,7 @@ export class HousingService {
       laundry: true,
     },
   ];
+  
   url = 'http://localhost:3000/locations';
   async getAllHousingLocations(): Promise<HousingLocation[]> {
     // return this.housingLocationList;
