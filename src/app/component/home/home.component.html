@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="col-md-6 col-md-offset-3 loginBox">
+        Welcome,  {{id}}
+        <a href="javascript:void(0);" (click)="logout()">Logout</a>
+    </div>
+</div>
+<section>
+    <form>
+      <input type="text" placeholder="Filter by city" #filter />
+      <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+    </form>
+  </section>
+  <section class="results">
+    <app-tarea
+      *ngFor="let housingLocation of filteredLocationList"
+      [housingLocation]="housingLocation"
+    ></app-tarea>
+  </section>

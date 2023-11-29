@@ -1,0 +1,28 @@
+<div class="login">
+    <form class="custom-form"  [formGroup]="loginForm" (ngSubmit)="login()" method="post">
+      <h1>Login</h1>
+      <input
+        type="email"
+        formControlName="correo" 
+        name="correo"
+        placeholder="correo"
+        required="required"
+      />
+      <input
+        type="password"
+        formControlName="password"
+        name="password"
+        placeholder="Password"
+        required="required"
+      />
+      <div class="col-xs-12 form-group text-right">
+        <button class="btn btn-success" type="submit">Login</button>
+      </div>
+      <br>
+      <div class="container col-xs-12 form-group text-center">
+          <div class="col-md-6 col-md-offset-3 loginBox">
+              ¿No tienes cuenta?, <a href="javascript:void(0);" (click)="Registrarse()">Registrate</a>
+          </div>
+      </div>
+    </form>
+  </div>
