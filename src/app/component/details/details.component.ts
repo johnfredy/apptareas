@@ -1,14 +1,11 @@
-import {Component, inject} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
-import {HousingService} from '../../services/housing.service';
-import {HousingLocation} from '../../interfaces/housinglocation';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { HousingLocation } from '../../interfaces/housinglocation';
+import { HousingService } from '../../services/housing.service';
 
 @Component({
   selector: 'app-details',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })

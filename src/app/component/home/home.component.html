@@ -1,12 +1,37 @@
 <section>
-    <form>
-      <input type="text" placeholder="Filter by city" #filter />
-      <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8">
+                <form>
+                    <input type="text" placeholder="Filter by city" #filter style="width: 80%;float: left;" />
+                    <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <p style="float: right;">
+                    <button class="btn btn-success" style="background: green;" type="submit"  (click)="newTask()">Crear tarea</button>
+                </p>
+            </div>
+        </div>
+    </div>
   </section>
-  <section class="results">
-    <app-housing-location
-      *ngFor="let housingLocation of filteredLocationList"
-      [housingLocation]="housingLocation"
-    ></app-housing-location>
+  <section>
+    <div class="columnas">
+        <li><h1 class="titulo">Por hacer</h1></li>
+        <li><h1 class="titulo">Completado</h1></li>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <app-tarea *ngFor="let tareaList of tareaTodoList"
+                [tareaList]="tareaList">
+                </app-tarea>
+            </div>
+            <div class="col-6">
+                <app-tarea *ngFor="let tareaList2 of tareaDoneList"
+                [tareaList]="tareaList2">
+                </app-tarea>
+            </div>
+        </div>
+    </div>
   </section>

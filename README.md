@@ -26,13 +26,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-
-// src/app/users/users.service.ts.
-// ng generate service hero
-##cookies
-Para usar las cookies en Angular existe esta librería para que no tegnas que montarte tu todo. Para instalarla: `npm install ngx-cookie-service --save`
-
-ng generate component housingLocation
-ng generate interface housinglocation
-
-ng new apptareas --standalone=false
+npm install ngx-cookie-service --save
+json-server --watch db.json
