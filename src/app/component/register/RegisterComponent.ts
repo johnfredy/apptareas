@@ -10,24 +10,26 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
   styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit {
-  email: string = '';
+  correo: string = '';
   password: string = '';
   confirmPassword: string = '';
   passwordError: boolean = false;
-  user: FormGroup = new FormGroup({
+  registerForm: FormGroup = new FormGroup({
     correo: new FormControl(''),
     password: new FormControl(''),
     passwordRepeat: new FormControl('')
   });
+	returnUrl: string='';
   
   constructor(private fb: FormBuilder, public userService: UsersService, public router: Router) { }
   
   ngOnInit() {
-    this.user = this.fb.group({
-      correo: ['', [Validators.required, Validators.minLength(2)]],
-      password: ['', Validators.required],
-      passwordRepeat: ['', Validators.required]
+    this.registerForm = this.fb.group({
+      correo: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      passwordRepeat: ['', [Validators.required, Validators.minLength(6)]]
     });
+    this.returnUrl = '/home';
   }
   // passwordMatchValidator(g: FormGroup) {
     //   return g.get("password").value === g.get("passwordRepeat").value
@@ -35,12 +37,26 @@ export class RegisterComponent implements OnInit {
     //     : { mismatch: true };
   // }
   register() {
-    const user = { email: this.email, password: this.password };
-    this.userService.register(user).subscribe((data) => {
-      console.log(data);
-      this.userService.setToken(data.token);
-      this.router.navigateByUrl("/");
-    });
+    if (this.registerForm.invalid) {
+      console.log('invalido')
+      return;
+		}
+		else{
+      this.passwordError = false;
+      this.correo = this.registerForm.get('correo')?.value;
+      this.password = this.registerForm.get('password')?.value;
+      this.confirmPassword = this.registerForm.get('passwordRepeat')?.value;
+      if(this.password == this.confirmPassword){
+        const user = { correo: this.correo, password: this.password };
+        this.userService.register(user).subscribe((data) => {
+          console.log(data);
+          this.router.navigate([this.returnUrl]);
+        });
+      }
+      else{
+        this.passwordError = true;
+      }
+    }
   }
   Login() {
     this.router.navigate(['/login']);

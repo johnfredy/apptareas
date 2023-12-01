@@ -1,16 +1,17 @@
 <div class="register">
-    <form novalidate class="custom-form" method="post" (ngSubmit)="register()" [formGroup]="user">
+    <form novalidate class="custom-form" method="post" (ngSubmit)="register()" [formGroup]="registerForm">
         <h1>Registro</h1>
         <input type="email" formControlName="correo" name="correo" placeholder="Correo" required="required"/>
         <input type="password" formControlName="password" name="password" placeholder="Contraseña" required="required"/>
         <input type="password" formControlName="passwordRepeat" name="password" placeholder="Repetir contraseña" required="required"/>
-        <div style="color: red;" class="error" *ngIf="user.get('correo')?.errors || user.get('password')?.errors || user.get('passwordRepeat')?.errors">
-            <!-- {{user.getError}} -->
+        <div style="color: red;" class="error" *ngIf="passwordError || registerForm.get('correo')?.errors || 
+            registerForm.get('password')?.errors || registerForm.get('passwordRepeat')?.errors">
+            <!-- {{registerForm.getError}} -->
             Por favor verifique los datos.
         </div>
-        <!-- <p class="login__validation-error" *ngIf="user.controls['password'].errors.pattern">Password must be longer than 5 symbols and must contain 1 digit, 1 lowercase and 1 uppercase letter</p> -->
+        <!-- <p class="login__validation-error" *ngIf="registerForm.controls['password'].errors.pattern">Password must be longer than 5 symbols and must contain 1 digit, 1 lowercase and 1 uppercase letter</p> -->
         <br>
-        <button type="submit" [disabled]="user.invalid">Register</button>
+        <button type="submit" [disabled]="registerForm.invalid">Register</button>
         <br>
         <div class="container col-xs-12 form-group text-center">
             <div class="col-md-6 col-md-offset-3 loginBox">

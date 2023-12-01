@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HousingLocation } from '../../interfaces/housinglocation';
+import { Tarea } from '../../interfaces/tarea';
 
 @Component({
   selector: 'app-tarea',
@@ -7,5 +7,5 @@ import { HousingLocation } from '../../interfaces/housinglocation';
   styleUrl: './tarea.component.css'
 })
 export class TareaComponent {
-  @Input() housingLocation!: HousingLocation;
+  @Input() tareaList!: Tarea;
 }

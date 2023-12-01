@@ -10,4 +10,8 @@
   .content {
     padding: var(--content-padding);
   }
-  
+  #columnas{
+    column-count:2;
+    column-gap:20px;
+    list-style: none;
+ }

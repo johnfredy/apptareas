@@ -1,3 +1,17 @@
-<div>
-  <router-outlet></router-outlet>
-</div>
+<main>
+  <a [routerLink]="['/']">
+    <header class="brand-name">
+      <div id="columnas">
+        <li>
+        <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true" />
+        </li>
+        <li style="text-align: right;">
+          Welcome,  {{id}} <a href="javascript:void(0);" (click)="logout()">Logout</a>
+        </li>
+      </div>
+    </header>
+  </a>
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
+</main>

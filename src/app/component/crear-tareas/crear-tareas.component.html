@@ -1,0 +1,11 @@
+
+<section class="listing-apply">
+    <h2 class="section-heading">Datos de la nueva tarea</h2>
+    <form [formGroup]="crearTareaForm" (submit)="crearTarea()">
+      <label for="first-name">Nombre</label>
+      <input id="first-name" type="text" formControlName="nombre" />
+      <label for="last-name">Descripcion</label>
+      <input id="last-name" type="text" formControlName="descripcion" />
+      <button type="submit" class="primary">Crear Tarea</button>
+    </form>
+  </section>

@@ -12,9 +12,11 @@ import { RegisterComponent } from './component/register/RegisterComponent';
 import { HomeComponent } from './component/home/home.component';
 import { AuthGuard } from './services/auth/auth.guard';
 import { TareaComponent } from './component/tarea/tarea.component';
+import { DetailsComponent } from './component/details/details.component';
+import { CrearTareasComponent } from './component/crear-tareas/crear-tareas.component';
 
 @NgModule({
-  declarations: [ AppComponent, TodolistComponent, LoginComponent, RegisterComponent, HomeComponent, TareaComponent ],
+  declarations: [ AppComponent, TodolistComponent, LoginComponent, RegisterComponent, HomeComponent, TareaComponent, DetailsComponent, CrearTareasComponent ],
   imports: [ BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule ],
   providers: [CookieService, AuthGuard],
   bootstrap: [AppComponent]

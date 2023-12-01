@@ -38,4 +38,15 @@
         grid-template-columns: 1fr;
     }    
   }
-  
+  .columnas{
+    column-count:2;
+    column-gap:20px;
+    list-style: none;
+    /* column-rule:6px double gray; */
+  }
+  .titulo{
+    text-align: center;
+    font-size: 28pt;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }

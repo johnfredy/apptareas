@@ -67,7 +67,8 @@ export class LoginComponent  implements OnInit {
           console.log('la petición fue exitosa')
           console.log(response);
           localStorage.setItem('isLoggedIn', "true");
-          localStorage.setItem('token', this.loginForm.get('correo')?.value);
+          localStorage.setItem('usuario', this.loginForm.get('correo')?.value);
+          localStorage.setItem('token', response.token);
           this.router.navigate([this.returnUrl]);
         }, 
         error: () =>{
