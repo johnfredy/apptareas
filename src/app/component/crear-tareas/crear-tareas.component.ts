@@ -48,11 +48,12 @@ export class CrearTareasComponent implements OnInit{
       this.tareasService.creacionTarea(this.tarea).subscribe({
         next: (response) => {
           console.log(response);
+          this.router.navigate(['/home']);
         }, 
-        error: () =>{
-          console.log('ocurrió un error al hacer la petición')
-          this.userService.logout();
-          this.router.navigate(['/login']);
+        error: (error) =>{
+          console.log(error)
+          // this.userService.logout();
+          // this.router.navigate(['/login']);
         }
       });
     }

@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { HousingLocation } from '../../interfaces/housinglocation';
-import { HousingService } from '../../services/housing.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TareasService } from '../../services/tareas/tareas.service';
+import { Tarea } from '../../interfaces/tarea';
 
 @Component({
   selector: 'app-details',
@@ -11,26 +11,43 @@ import { HousingService } from '../../services/housing.service';
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  housingService = inject(HousingService);
-  housingLocation: HousingLocation | undefined;
-  applyForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
+  tareaService = inject(TareasService);
+  tarea: Tarea = {nombre: '',
+    descripcion: '',
+    completado: false,
+    id: 0
+  };
+  tareaForm = new FormGroup({
+    descripcion: new FormControl('')
   });
 
-  constructor() {
-    const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
-    this.housingService.getHousingLocationById(housingLocationId).then((housingLocation) => {
-      this.housingLocation = housingLocation;
+  constructor(public router:Router) {
+    const tareaId = parseInt(this.route.snapshot.params['id'], 10);
+    this.tareaService.getTareaTodo(tareaId).subscribe({
+      next: (tarea) => {
+      this.tarea = tarea;
+      this.tareaForm.setValue({'descripcion':this.tarea.descripcion})
+      console.log(this.tarea);
+    },
+    error: (error) => {
+      console.log(error);
+    }
     });
   }
   
-  submitApplication() {
-    this.housingService.submitApplication(
-      this.applyForm.value.firstName ?? '',
-      this.applyForm.value.lastName ?? '',
-      this.applyForm.value.email ?? '',
-    );
+  modificarTarea(id:number) {
+    this.tarea.descripcion = this.tareaForm.get('descripcion')?.value ?? '';
+    this.tareaService.modificarTarea(this.tarea, id).subscribe({
+      next: (resp) =>{
+      }
+    })
+    this.router.navigate(['/login']);
+  }
+  eliminarTarea(id:number){
+    this.tareaService.eliminarTarea(id).subscribe({
+      next: (resp) =>{
+      }
+    })
+    this.router.navigate(['/login']);
   }
 }

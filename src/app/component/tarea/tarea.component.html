@@ -7,5 +7,14 @@
     /> -->
     <h2 class="listing-heading">{{ tareaList.nombre }}</h2>
     <p class="listing-location">{{ tareaList.descripcion }},</p>
-    <a [routerLink]="['/details', tareaList.id]">Acceder</a>
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngIf="!tareaList.completado" class="col-6">
+          <button class="btn btn-success" type="submit" (click)="completado(tareaList.id)">Completar</button>
+        </div>
+        <div *ngIf="!tareaList.completado" class="col-6">
+          <a [routerLink]="['/details', tareaList.id]">Modificar</a>
+        </div>
+      </div>
+    </div>
 </section>
